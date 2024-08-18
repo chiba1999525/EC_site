@@ -1,0 +1,26 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<!-- タイトル -->
+	    <title>top</title>
+	    <!-- エンコード -->
+	    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	    
+	    <!-- css -->
+		<link rel="stylesheet" th:href="@{/css/common.css}">
+		<link th:href="@{/css/goods/top.css}" rel="stylesheet">
+		
+	</head>
+	
+	<body>
+	
+		<div th:replace="user/common :: headerFragment"></div>
+		
+		<main>
+			<h1>ユーザー</h1>
+		</main>
+		
+		<div th:replace="user/common :: footerFragment"></div>
+		
+	</body>
+</html>

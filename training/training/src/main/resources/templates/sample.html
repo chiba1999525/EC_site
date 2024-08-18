@@ -1,0 +1,26 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<!-- タイトル -->
+	    <title>サンプル</title>
+	    <!-- エンコード -->
+	    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	    
+	    <!-- css -->
+		<link rel="stylesheet" th:href="@{/css/common.css}">
+		<link th:href="@{/css/edit_item.css}" rel="stylesheet">
+	    
+	</head>
+	
+	<body>
+	
+		<div th:replace="common :: headerFragment"></div>
+		
+		<main>
+			<h1>こんにちは</h1>
+		</main>
+		
+		<div th:replace="common :: footerFragment"></div>
+		
+	</body>
+</html>

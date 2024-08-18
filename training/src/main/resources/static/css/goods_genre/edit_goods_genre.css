@@ -1,0 +1,66 @@
+
+
+.goods-genre-area {
+    display: flex;
+    flex-direction: column;
+    text-align:center;
+
+}
+
+
+.input {
+	margin:0 auto;
+    margin-bottom: 15px;
+    width: 50%;
+}
+
+#editItemForm > div:nth-child(5) > label > div {
+	    height: 555px;
+		overflow: scroll;/*はみ出した部分をスクロール領域に隠す*/
+}
+
+
+
+.input label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+#div_editor1 {
+	height: 500px;
+}
+
+.input input[type="text"]{
+    width: calc(50% - 10px);
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.submit-save button {
+	ackground-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    width: 15%;
+    height: 40px;
+    border-radius: 15px;
+}
+
+.goods-genre-all table {
+	margin: 30px auto;
+    width: 60%;
+}
+
+td, th {
+	text-align:center;
+}
+
+
+
+
+
+
+

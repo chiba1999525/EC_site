@@ -1,0 +1,32 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<!-- タイトル -->
+	    <title>管理者top</title>
+	    <!-- エンコード -->
+	    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	    
+	    <!-- css -->
+		<link rel="stylesheet" th:href="@{/css/common.css}">
+		<link th:href="@{/css/top.css}" rel="stylesheet">
+	</head>
+	
+	<body>
+	
+		<div th:replace="admin/common :: headerFragment"></div>
+		
+		<main>
+			<h1>こんにちは</h1>
+			
+			<div th:text="${user.username}"></div>
+			
+			<div th:text="${user.email}"></div>
+			
+			<div th:text="${user.password}"></div>
+			
+		</main>
+		
+		<div th:replace="admin/common :: footerFragment"></div>
+		
+	</body>
+</html>

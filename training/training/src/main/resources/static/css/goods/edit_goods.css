@@ -1,0 +1,64 @@
+
+.goods-area {
+    display: flex;
+    flex-direction: column;
+    text-align:center;
+
+}
+
+
+.input {
+	margin:0 auto;
+    margin-bottom: 15px;
+    width: 50%;
+}
+
+#editItemForm > div:nth-child(5) > label > div {
+	    height: 555px;
+		overflow: scroll;/*はみ出した部分をスクロール領域に隠す*/
+}
+
+
+
+.input label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+#div_editor1 {
+	height: 500px;
+}
+
+.input input[type="text"], .input textarea{
+    width: calc(100% - 10px);
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.input textarea{
+	height: 200px;
+}
+
+/*商品画像*/
+#imgPreviewField {
+	display:flex;
+	height: 200px;
+}
+
+#imgPreviewField img {
+	    width: 90%;
+    height: 100px;
+    margin-top: 20px;
+    object-fit: cover;
+}
+
+/*保存ボタン*/
+.submit-save button {
+	width: 15%;
+    height: 40px;
+    margin: 20px auto;
+}
+
+

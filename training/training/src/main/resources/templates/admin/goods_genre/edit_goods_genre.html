@@ -1,0 +1,91 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<!-- タイトル -->
+	    <title>商品ジャンル編集</title>
+	    <!-- エンコード -->
+	    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	    
+	    <!-- css -->
+		<link rel="stylesheet" th:href="@{/css/common.css}">
+		<link th:href="@{/css/goods_genre/edit_goods_genre.css}" rel="stylesheet">
+		
+	</head>
+	
+	<body>
+	
+		<div th:replace="admin/common :: headerFragment"></div>
+		
+		<main>
+			
+			<div class="goods-genre-area">
+				
+				<!-- 成功メッセージ -->
+				<div class="messages" th:text="${successMessages}"></div>
+				
+				<h1 th:if="${goodsGenre.id == 0}">商品ジャンル追加</h1>
+				<h1 th:if="${goodsGenre.id != 0}" th:text="${goodsGenre.genreName}">編集</h1>
+
+				<!-- エラーメッセージ -->
+				<div class="error-messages" th:each="error : ${errorMessages}" th:text="${error}">></div>			
+	
+				<form id="editItemForm" th:action="@{/admin/post_edit_goods_genre}" th:object="${goodsGenre}" method="Post">
+					
+					<!-- 商品ジャンルid -->
+					<div class="input" style="display: none;">
+						<label>ID
+							<input type="text" th:field="*{id}" />
+						</label>
+					</div>
+					
+					<!--　商品ジャンル名 -->
+					<div class="input">
+						<label>商品ジャンル名
+							<input type="text" th:field="*{genreName}" />
+						</label>
+					</div>
+					
+					<!-- 保存ボタン -->		    
+			    	<div class="submit-save">
+			    	    <button type="submit" id="submit-save">保存</button>
+			    	</div>
+					
+				</form>
+				
+				
+				<div class="goods-genre-all">
+				
+					<table th:if="${goodsGenre != null}">
+						<tr>
+							<th>id</th>
+							<th>商品ジャンル名</th>
+							<th></th>
+							<th></th>
+						</tr>
+						<tr  th:each="goodsGenre : ${ggAll}">
+							<td th:text="${goodsGenre.id}"></td>
+							<td th:text="${goodsGenre.genreName}"></td>
+							<td>
+								<a th:href="@{/admin/edit_goods_genre(id=${goodsGenre.id})}">
+									<button>編集</button>
+								</a>
+							</td>
+							<td class="delete">
+								<a th:href="@{'/admin/delete_goods_genre/' + ${goodsGenre.id}}"
+								onclick="return confirm('削除してもよろしいですか？')">
+									<button>削除</button>
+								</a>
+							</td>
+						</tr>
+						
+					</table>
+				
+				</div>
+			
+			</div>
+		</main>
+		
+		<div th:replace="common :: footerFragment"></div>
+		
+	</body>
+</html>

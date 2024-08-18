@@ -1,0 +1,123 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<!-- タイトル -->
+	    <title>商品編集</title>
+	    <!-- エンコード -->
+	    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	    
+	    <!-- css -->
+		<link rel="stylesheet" th:href="@{/css/common.css}">
+		<link th:href="@{/css/goods/edit_goods.css}" rel="stylesheet">
+		
+		<!-- JS -->
+	<script type="text/javascript" th:src="@{/javascript/jquery-3.6.2.min.js}"></script>
+	<script type="text/javascript" th:src="@{/javascript/common.js}"></script>
+	<script type="text/javascript" th:src="@{/javascript/goods/edit_goods.js}"></script>
+	
+	</head>
+	
+	<body>
+	
+		<div th:replace="admin/common :: headerFragment"></div>
+		
+		<main>
+			
+			<div class="goods-area">
+			
+				<h1 th:if="${goods.id == 0}">商品投稿</h1>
+				<h1 th:if="${goods.id != 0}">商品編集</h1>
+				
+				<!-- 送信処理 -->
+				<form id="editItemForm" th:action="@{/admin/post_edit_goods}" th:object="${goods}" enctype="multipart/form-data" method="Post" >
+					
+					<!-- エラーメッセージ -->
+				    <div class="error-messages" th:each="error : ${errorMessages}" th:text="${error}">></div>
+					
+					<!-- 商品id -->
+					<div class="input" style="display: none;">
+						<label>ID
+							<input type="text" th:field="*{id}" />
+						</label>
+					</div>
+					
+					<!-- 商品ジャンル -->
+					<div class="input">
+						<label>ジャンル
+							<select th:field="*{genreId}">
+								<option th:value="0">ジャンルを選択してください</option>
+								<option th:each="goodsGenre : ${goodsGenreAll}" th:value="${goodsGenre.id}" th:text="${goodsGenre.genreName}"></option>
+							</select>
+						</label>
+					</div>
+					
+					<!--　商品名 -->
+					<div class="input">
+						<label>商品名
+							<input type="text" th:field="*{goodsName}" />
+						</label>
+					</div>
+					
+					<!--　商品説明 -->
+					<div class="input">
+						<label>商品説明
+							<textarea th:field="*{text}" ></textarea>
+						</label>
+					</div>
+					
+					
+				      <!-- 商品画像 -->
+				      <div class="image">
+				      	<span>画像</span>
+					        <input type="file" name="files" accept="/upload, image/png, image/jpeg, application/pdf"
+						th:src="'data:image/png;base64,' + ${goodsImageList.image}" multiple="multiple" onchange="loadImage(this);">
+				      </div>
+					    
+					   <!-- アップロードした画像 -->
+					   <div id="imgPreviewField" >
+					   		
+					   </div>
+					
+					<!--　価格 -->
+					<div class="input">
+						<label>商品価格
+							<input type="number" th:field="*{price}" id="price" />
+						</label>
+					</div>
+					
+					<!--　税込み価格 -->
+					<div class="input">
+							<span>税込み価格</span>
+							<div class="taxprice"  id="tax_price" >0</div>
+					</div>
+					
+					<input type="number" name="taxPrice"  id="tax_price_input" style="display: none;" />
+					
+					<!--　商品数 -->
+					<div class="input">
+						<label>商品数
+							<input type="number" th:field="*{stock}" />
+						</label>
+					</div>
+					
+					<!--　最大購入数 -->
+					<div class="input">
+						<label>最大購入数
+							<input type="number" th:field="*{maxBuy}" />
+						</label>
+					</div>
+					
+					<!-- 保存ボタン -->		    
+			    	<div class="submit-save">
+			    	    <button type="submit" id="submit-save">保存</button>
+			    	</div>
+					
+				</form>
+			
+			</div>
+		</main>
+		
+		<div th:replace="common :: footerFragment"></div>
+		
+	</body>
+</html>
