@@ -16,5 +16,9 @@ public interface GoodsGenreRepository extends JpaRepository<GoodsGenre, Integer>
     
     GoodsGenre findById(int id);
     
+ // idからgenreNameを取得するメソッド
+//    String findGenreNameById(int id);
+    
+    
     
 }

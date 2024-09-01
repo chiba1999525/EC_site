@@ -27,7 +27,8 @@ public class AdminEditGoodsGenreController {
 	@RequestMapping("/admin/edit_goods_genre")
 	public String admin_edit_goods_genre(
 			@RequestParam(name = "id", required = false, defaultValue = "0") int id,
-			Model model
+			Model model,
+			RedirectAttributes redirect
 			) {
 		
 		//商品ジャンルインスタンスを定義
@@ -37,10 +38,26 @@ public class AdminEditGoodsGenreController {
 		if (id != 0) {
 			//指定のレコードを入れる
 			gg = ggRep.findById(id);
+			
+			//レコードが存在しない場合
+			if (gg == null) {
+				//エラーメッセージのリストを定義
+		    	List<String> errorMessages = new ArrayList<String>();
+		    	errorMessages.add("ジャンルが存在しません");
+				redirect.addFlashAttribute("errorMessages", errorMessages);
+				//ジャンル新規ページに遷移
+				return "redirect:/admin/edit_goods_genre";	
+			}
+			
 		}
 		
 		//商品ジャンルすべて取り出す
 		List<GoodsGenre> ggAll = ggRep.findAll();
+		
+		//商品ジャンルが存在しない場合
+		if (ggAll.size() == 0) {
+			ggAll = null;				
+		}
 		
 		//modelを定義
 		model.addAttribute("goodsGenre", gg);

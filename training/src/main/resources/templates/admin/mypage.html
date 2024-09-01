@@ -1,0 +1,92 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<!-- タイトル -->
+	    <title>マイページ</title>
+	    <!-- エンコード -->
+	    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	    
+	    <!-- css -->
+		<link rel="stylesheet" th:href="@{/css/common.css}">
+		<link th:href="@{/css/mypage.css}" rel="stylesheet">
+		
+		<!-- JS -->
+	<script type="text/javascript" th:src="@{/javascript/jquery-3.6.2.min.js}"></script>
+	<script type="text/javascript" th:src="@{/javascript/common.js}"></script>
+	<script type="text/javascript" th:src="@{/javascript/goods/edit_goods.js}"></script>
+	
+	</head>
+	
+	<body>
+	
+		<div th:replace="admin/common :: headerFragment"></div>
+		
+		<main>
+			
+			
+			<div class="mypage-area">
+			
+				<form th:action="@{/admin/post_mypage}" th:object="${userLogin}" method="post">
+				
+					<!-- エラーメッセージ -->
+				    <div class="error-messages" th:each="error : ${errorMessages}" >
+				    	<ul>
+				    		<li th:text="${error}"></li>
+				    	</ul>
+				    </div>
+				    
+				    <!-- 成功メッセージ -->
+				<div class="messages" th:each="success : ${successMessages}">
+					<ul>
+			    		<li th:text="${success}"></li>
+			    	</ul>
+				</div>
+				
+					<!-- user name -->
+					<div class="user-name-area">
+						<label>
+							<span>user_name</span>
+							<input type="text" class="user-name" th:field="*{username}" />
+						</label>
+					</div>
+					
+					<!-- 現在のパスワード -->
+					<div class="now-password-area">
+						<label>
+							<span>現在のパスワード</span>
+							<input type="password" class="now-password" name="nowPassword" />
+						</label>
+					</div>
+					
+					<!-- 新しいパスワード -->
+					<div class="new-password-area">
+						<label>
+							<span>新しいパスワード</span>
+							<input type="password" class="new-password" name="newPassword"/>
+						</label>
+					</div>
+					
+					<!-- 新しいパスワード（確認) -->
+					<div class="new-password-again-area">
+						<label>
+							<span>新しいパスワード（確認）</span>
+							<input type="password" class="new-password-again" />
+						</label>
+					</div>
+					
+					<!-- 保存ボタン -->
+					<div class="submit-save">
+			    	    <button type="submit" id="submit-save">保存</button>
+			    	</div>
+			    	
+				</form>
+
+			</div>
+			
+				
+		</main>
+		
+		<div th:replace="common :: footerFragment"></div>
+		
+	</body>
+</html>

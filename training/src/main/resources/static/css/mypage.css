@@ -1,0 +1,31 @@
+
+/*マイページエリア*/
+.mypage-area {
+	margin: 0 auto;
+    /*コンテンツのサイズに合わせる
+	width: fit-content;*/
+	width: 50%;
+}
+	
+	/*入力値ラベル*/
+	.mypage-area span {
+		display: inline-block;
+	    width: 40%;
+	    vertical-align: top;
+	}
+	
+	/*マイページ入力値*/
+	.user-name-area, .now-password-area, .new-password-area, .new-password-again-area {
+		margin:5% 0;
+	}
+	
+	/*保存ボタン*/
+	.mypage-area .submit-save {
+		margin: 5% auto;
+		text-align: center;
+	}
+	
+		.mypage-area button {
+			width: 20%;
+			height: 50px;
+		}

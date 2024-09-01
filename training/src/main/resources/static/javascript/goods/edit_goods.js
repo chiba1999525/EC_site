@@ -39,6 +39,7 @@ $(function () {
         var price = parseFloat($(this).val());  // 入力された価格を取得し、数値に変換
         if (!isNaN(price)) {  // 値が数値であることを確認
             var tax_price = price * 11/10;  // 税込み価格を計算
+　　　　　　var tax_price = Math.trunc(tax_price)
             $('#tax_price').html(tax_price);
 			$('#tax_price_input').val(tax_price);  
 
@@ -46,6 +47,23 @@ $(function () {
             $('#tax_price').val().html("0");  // 入力が無効な場合は0を表示
         }
     });
+
+	//priceからフォーカスが外れた際
+	$("#price").blur(function(){
+        var price = parseFloat($(this).val());  // 入力された価格を取得し、数値に変換
+        
+        // 空またはNaNの場合
+        if (isNaN(price)) {
+            price = 0; // 空にする
+        }
+        
+        // 値を更新
+        $('#price').val(price);  // 入力欄を更新
+        $('#tax_price').html(price); // 表示を更新
+        $('#tax_price_input').val(price); // 隠しフィールドなどに更新
+    });
+
+
 
 });
 	

@@ -1,5 +1,7 @@
 package com.security;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -48,7 +50,11 @@ public class SecurityConfig {
   }
 
   @Bean
-  public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+  public SecurityFilterChain securityFilterChain(
+		  HttpSecurity http,
+		  //一つ前のページ
+		  HttpServletRequest before
+		  ) throws Exception {
 
     http
         // ログインページの許可設定

@@ -1,0 +1,98 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<!-- タイトル -->
+	    <title>商品詳細</title>
+	    <!-- エンコード -->
+	    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	    
+	    <!-- css -->
+		<link rel="stylesheet" th:href="@{/css/common.css}">
+		<link th:href="@{/css/goods/show_goods.css}" rel="stylesheet">
+		
+		<!-- JS -->
+	<script type="text/javascript" th:src="@{/javascript/jquery-3.6.2.min.js}"></script>
+	<script type="text/javascript" th:src="@{/javascript/common.js}"></script>
+	<script type="text/javascript" th:src="@{/javascript/goods/edit_goods.js}"></script>
+	
+	</head>
+	
+	<body>
+	
+		<div th:replace="admin/common :: headerFragment"></div>
+		
+		<main>
+			
+			<div class="goods-show-area">
+			
+				<!-- 商品画像 -->
+				<div class="image-area">
+					<img th:src="'data:image/png;base64,' + ${goodsImage.simage}" alt="Goods Image">
+				</div>
+				
+				<!-- 商品詳細 -->
+				<div class="goods-show">
+				
+					<!-- 商品名 -->
+					<div class="goods-name-area" >
+					
+						<div class="goods-name" th:text="${goods.goodsName}"></div>
+
+					</div>
+					
+					<!-- 商品価格 -->
+					<div class="goods-price-area">
+					
+						<span class="goods-price"  th:text="${goods.price}"></span>
+						<span>円（税込み）</span>
+					</div>
+					
+					<div class="stock-area">
+					
+						<!-- 商品在庫 -->
+						<!-- 在庫が10個以上の場合 -->
+						<div class="stock-area" th:if="${goods.stock} > 10">
+
+							<div class="stock">
+								在庫あり
+							</div>
+
+						</div>
+						
+						<!-- 在庫が10個以下の場合 -->
+						<div class="stock-are" th:if="${goods.stock} < 10">
+							<span>残り</span>
+							<span class="stock"  th:text="${goods.stock}"></span>
+							<span>個</span>
+						</div>
+						
+						<!-- 購入数 -->
+						<div class="max-buy-area">
+							<span>購入数</span>
+							<select>
+								<option th:each="item : ${buyList}" 
+				                th:value="${item}" 
+				                th:text="${item}">
+        						</option>
+							</select>
+						</div>
+					</div>
+					
+					<!-- 商品説明 -->
+					<div class="goods-text" th:text="${goods.text}"></div>
+
+					<!-- カートボタン -->
+					<div class="cart-button"></div>
+					
+				</div>
+				
+			
+			</div>
+			
+				
+		</main>
+		
+		<div th:replace="common :: footerFragment"></div>
+		
+	</body>
+</html>

@@ -1,7 +1,11 @@
 package com.entity;
 
+import java.time.LocalDateTime;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Transient;
@@ -10,10 +14,12 @@ import lombok.Data;
 
 @Entity
 @Data
-@Table(name = "goods")
+@Table(name = "ecsite_goods")
 public class Goods {//商品テーブル
 	
 	@Id
+	//id自動生成
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column
 	private int id;
 	
@@ -44,15 +50,55 @@ public class Goods {//商品テーブル
 	@Column(name = "buy_num")
 	private int buyNum;//売上個数
 	
-	@Column(name = "image")//商品画像
-	private byte[] image;
+	@Column(name = "new_dateTime")//投稿日時
+	private LocalDateTime newDateTime;
+	
+	@Column(name = "edit_dateTime")//更新日時
+	private LocalDateTime editDateTime;
+	
+	@Transient//
+	private String SNewDateTime;
+	
+	@Transient//
+	private String SEditDateTime;
 
-	public byte[] getImage() {
-		return image;
+	public String getSNewDateTime() {
+		return SNewDateTime;
 	}
 
-	public void setImage(byte[] image) {
-		this.image = image;
+
+	public void setSNewDateTime(String sNewDateTime) {
+		SNewDateTime = sNewDateTime;
+	}
+
+
+	public String getSEditDateTime() {
+		return SEditDateTime;
+	}
+
+
+	public void setSEditDateTime(String sEditDateTime) {
+		SEditDateTime = sEditDateTime;
+	}
+
+
+	public LocalDateTime getEditDateTime() {
+		return editDateTime;
+	}
+
+
+	public void setEditDateTime(LocalDateTime editDateTime) {
+		this.editDateTime = editDateTime;
+	}
+
+
+	public LocalDateTime getNewDateTime() {
+		return newDateTime;
+	}
+
+
+	public void setNewDateTime(LocalDateTime newDateTime) {
+		this.newDateTime = newDateTime;
 	}
 
 	public int getId() {

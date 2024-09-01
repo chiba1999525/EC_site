@@ -47,9 +47,9 @@
 	height: 200px;
 }
 
-#imgPreviewField img {
-	    width: 90%;
-    height: 100px;
+img {
+	    width: 30%;
+    height: 200px;
     margin-top: 20px;
     object-fit: cover;
 }

@@ -65,18 +65,32 @@
 						</label>
 					</div>
 					
-					
-				      <!-- 商品画像 -->
-				      <div class="image">
-				      	<span>画像</span>
-					        <input type="file" name="files" accept="/upload, image/png, image/jpeg, application/pdf"
-						th:src="'data:image/png;base64,' + ${goodsImageList.image}" multiple="multiple" onchange="loadImage(this);">
-				      </div>
-					    
-					   <!-- アップロードした画像 -->
-					   <div id="imgPreviewField" >
-					   		
-					   </div>
+					<!-- 商品画像　新規 -->
+					<div class="image">
+					  <span>画像</span>
+					      <div class="image-area">
+					      
+					      	<input type="file" name="file" onchange="previewFile(this);"
+					        accept="/upload, image/png, image/jpeg, application/pdf"
+					        th:src="'data:image/png;base64,' + ${goodsImage.simage}"  />
+					      </div>
+					</div>
+
+			   		<!-- アップロードした画像 -->
+					 <img id="preview" >
+				
+					 <script>
+					  function previewFile(hoge){
+					    var fileData = new FileReader();
+					    fileData.onload = (function() {
+					      //id属性が付与されているimgタグのsrc属性に、fileReaderで取得した値の結果を入力することで
+					      //プレビュー表示している
+					      document.getElementById('preview').src = fileData.result;
+					    });
+					    fileData.readAsDataURL(hoge.files[0]);
+					  }
+					  </script>
+
 					
 					<!--　価格 -->
 					<div class="input">
